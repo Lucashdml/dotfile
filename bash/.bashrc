@@ -138,7 +138,7 @@ fi
 export PATH="$HOME/.local/scripts:$PATH"
 export PATH="$HOME/nvim.appimage:$PATH"
 
-export FZF_ALT_C_COMMAND="fdfind -t d . $HOME"
+export FZF_ALT_C_COMMAND="fdfind -t d --exclude .vscode --exclude .wine --exclude snap --exclude Code --exclude .git --exclude thorium --exclude .nvm --exclude discord --exclude pgadmin4 --exclude .steam --exclude .npm --exclude node_modules --hidden . $HOME"
 export FZF_DEFAULT_COMMAND="fdfind . $HOME"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
