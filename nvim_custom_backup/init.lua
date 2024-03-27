@@ -1,20 +1,41 @@
--- To find any highlight groups: "<cmd> Telescope highlights"
--- Each highlight group can take a table with variables fg, bg, bold, italic, etc
--- base30 variable names can also be used as colors
-
-local M = {}
-
----@type Base46HLGroupsList
-M.override = {
-  Comment = {
-    italic = true,
-  },
+-- local autocmd = vim.api.nvim_create_autocmd
+local enable_providers = {
+  "python3_provider",
+  "node_provider",
+  -- and so on
 }
+for _, plugin in pairs(enable_providers) do
+  vim.g["loaded_" .. plugin] = nil
+  vim.cmd("runtime " .. plugin)
+end
 
----@type HLTable
-M.add = {
-  NvimTreeOpenedFolderName = { fg = "green", bold = true },
-}
+-- Auto resize panes when resizing nvim window
+-- autocmd("VimResized", {
+--   pattern = "*",
+--   command = "tabdo wincmd =",
+-- })
 
+vim.opt.guicursor = ""
+vim.opt.nu = true
+vim.opt.relativenumber = true
+vim.opt.fillchars = { eob = '~' }
 
-return M
+-- vim.opt.tabstop = 4
+-- vim.opt.softtabstop = 4
+-- vim.opt.shiftwidth = 4
+-- vim.opt.expandtab = true
+
+vim.opt.swapfile = false
+vim.opt.backup = false
+vim.opt.undodir = os.getenv "HOME" .. "/.vim/undodir"
+vim.opt.undofile = true
+
+vim.opt.hlsearch = true
+vim.opt.incsearch = true
+vim.opt.termguicolors = true
+vim.opt.scrolloff = 8
+vim.opt.signcolumn = "yes"
+
+vim.opt.isfname:append "@-@"
+vim.opt.updatetime = 50
+vim.opt.colorcolumn = "80"
