@@ -26,10 +26,11 @@ shopt -s checkwinsize
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
 #shopt -s globstar
+
 set -o vi
-export PATH="$HOME/.local/scripts:$PATH"
 
 source ~/.git-prompt.sh
+
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
@@ -103,19 +104,16 @@ fi
 cd() { builtin cd "$@" && ls; }     # Always list directory contents upon 'cd'
 mcd() { mkdir -p "$1" && cd "$1"; } # mcd:          Makes new Dir and jumps inside
 
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-alias update='sudo apt-get update && sudo apt-get upgrade'
-alias clean='sudo apt-get autoremove'
-alias c='clear'
-alias df='df -h'
-alias nv='nvim .'
-alias t='tmux attach'
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+#Custom functions
+
+#Search Directory
+sd() {
+	fdfind --type d --hidden --exclude .git | fzf | xargs -I {} bash -c 'cd {} && nvim'
+}
+#Search File
+sf() {
+	fdfind --type f --hidden --exclude .git | fzf | xargs nvim
+}
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -136,12 +134,16 @@ if ! shopt -oq posix; then
 		. /etc/bash_completion
 	fi
 fi
-export FZF_DEFAULT_COMMAND='find . -type f -not -path "*/node_modules/*"  -not -path "*/.cache/*" -not -path "*/share/*" -not -path "*/.npm/*" -not -path "*/.local/*" -not -path "*/wine-test/*" -not -path "*/.steam/*" -not -path "*/.config/discord/*" -not -path "*/.config/thorium/*" -not -path "*/.config/Code/*"'
-export NVM_DIR="$HOME/.nvm"
+
+export PATH="$HOME/.local/scripts:$PATH"
+export PATH="$HOME/nvim.appimage:$PATH"
+
+export FZF_ALT_C_COMMAND="fdfind -t d . $HOME"
+export FZF_DEFAULT_COMMAND="fdfind . $HOME"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
-
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-bind '"\ec": "cd $(find repos -type d -o -path ~/.config/nvim -type d | fzf)\n"'
-eval "$(starship init bash)"
 
+eval "$(starship init bash)"
