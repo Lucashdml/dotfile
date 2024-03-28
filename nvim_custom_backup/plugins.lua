@@ -4,6 +4,10 @@ local overrides = require "custom.configs.overrides"
 local plugins = {
 
   -- Override plugin definition options
+  {
+    "christoomey/vim-tmux-navigator",
+    lazy = false,
+  },
 
   {
     "neovim/nvim-lspconfig",
@@ -53,26 +57,33 @@ local plugins = {
   },
   {
     "turbio/bracey.vim",
-    cmd = {"Bracey", "BraceyStop", "BraceyReload", "BraceyEval"},
+    cmd = { "Bracey", "BraceyStop", "BraceyReload", "BraceyEval" },
+    lazy = false,
   },
   {
     "mbbill/undotree",
     lazy = true,
     cmd = "UndotreeToggle",
   },
+  
   {
     "nvim-telescope/telescope.nvim",
     opts = {
       defaults = {
-          layout_strategy = "horizontal",
-          layout_config = {
-              height = 0.95,
-              prompt_position = "top",
-              horizontal = {
-                  mirror = false,
-                  preview_cutoff = 0,
-              },
+        layout_strategy = "horizontal",
+        sorting_strategy = "descending",
+        layout_config = {
+          height = 0.95,
+          width = 0.95,
+          horizontal = {
+            prompt_position = "bottom",
+            mirror = false,
+            preview_cutoff = 0,
           },
+          vertical = {
+            mirror = true,
+          }
+        },
       },
     },
   },
