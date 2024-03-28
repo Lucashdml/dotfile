@@ -109,7 +109,7 @@ mcd() { mkdir -p "$1" && cd "$1"; } # mcd:          Makes new Dir and jumps insi
 #Search Directory
 sd() {
 	cd "$(fdfind --type d --hidden --exclude .git --exclude .nvm --exclude node_modules | fzf)"
-	nvim .
+	nvim 
 }
 #Search File
 sf() {
