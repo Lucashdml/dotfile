@@ -108,7 +108,7 @@ mcd() { mkdir -p "$1" && cd "$1"; } # mcd:          Makes new Dir and jumps insi
 
 #Search Directory
 sd() {
-	cd "$(fdfind --type d --hidden --exclude .git --exclude .nvm --exclude node_modules | fzf)"
+	cd "$(fdfind --type d --hidden --exclude .git --exclude .nvm --exclude node_modules --exclude .vscode --exclude .wine --exclude snap --exclude Code --exclude .git --exclude thorium --exclude .nvm --exclude discord --exclude pgadmin4 --exclude .steam --exclude .npm --exclude node_modules | fzf)"
 	nvim 
 }
 #Search File
