@@ -4,17 +4,17 @@ local M = {}
 -- Path to overriding theme and highlights files
 local highlights = require "custom.highlights"
 M.ui = {
- theme = "gruvbox",
- theme_toggle = { "gatekeeper", "gruvbox"},
+  theme = "gruvbox",
+  theme_toggle = { "gatekeeper", "gruvbox" },
 
- hl_override = highlights.override,
- hl_add = highlights.add,
- transparency = true,
- telescope = { style = "bordered"},
- statusline = {separator_style ="round"},
+  hl_override = highlights.override,
+  hl_add = highlights.add,
+  transparency = true,
+  telescope = { style = "bordered" },
+  statusline = { separator_style = "block" },
 
- -- nvdash (dashboard)
- nvdash = {
+  -- nvdash (dashboard)
+  nvdash = {
     load_on_startup = true,
 
     header = {
@@ -37,9 +37,9 @@ M.ui = {
       { " Themes", "Spc t h", "Telescope themes" },
       { " Mappings", "Spc c h", "NvCheatsheet" },
     },
- },
+  },
 
- cheatsheet = { theme = "grid" }, -- simple/grid
+  cheatsheet = { theme = "grid" }, -- simple/grid
 }
 
 M.plugins = "custom.plugins"
