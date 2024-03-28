@@ -5,6 +5,10 @@ M.general = {
   n = {
     [";"] = { ":", "enter command mode", opts = { nowait = true } },
 
+    ["<C-h>"] = { "<cmd> TmuxNavigateLeft<CR>", "window left" },
+    ["<C-l>"] = { "<cmd> TmuxNavigateRight<CR>", "window right" },
+    ["<C-j>"] = { "<cmd> TmuxNavigateDown<CR>", "window down" },
+    ["<C-k>"] = { "<cmd> TmuxNavigateUp<CR>", "window up" },
     --  format with conform
     ["<leader>fm"] = {
       function()
@@ -31,14 +35,14 @@ M.general = {
 
 vim.keymap.set("x", "<leader>p", [["_dP]])
 
-vim.keymap.set("n", "<C-d>", "<C-d>zz", {silent = true})
-vim.keymap.set("n", "<C-u>", "<C-u>zz", {silent = true})
-vim.keymap.set("n", "n", "nzzzv", {silent = true})
-vim.keymap.set("n", "N", "Nzzzv", {silent = true})
+vim.keymap.set("n", "<C-d>", "<C-d>zz", { silent = true })
+vim.keymap.set("n", "<C-u>", "<C-u>zz", { silent = true })
+vim.keymap.set("n", "n", "nzzzv", { silent = true })
+vim.keymap.set("n", "N", "Nzzzv", { silent = true })
 vim.keymap.set("n", "<leader><leader>", ":so", { desc = "Source" })
 vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
-vim.keymap.set("n", "<leader>fx", ":Bracey", {silent = true, desc = "Start Live Server"})
+vim.keymap.set("n", "<leader>fx", ":Bracey", { silent = true, desc = "Start Live Server" })
 
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { silent = true, desc = "Move selected lines up" })
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { silent = true, desc = "Move selected lines down" })
