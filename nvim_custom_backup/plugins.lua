@@ -4,6 +4,24 @@ local overrides = require "custom.configs.overrides"
 local plugins = {
 
   -- Override plugin definition options
+  { "tpope/vim-rails",
+    lazy = false,
+  },
+  {
+    "nvim-tree/nvim-web-devicons",
+    config = function()
+      require("nvim-web-devicons").setup {
+        override = {
+          ruby = {
+            icon = "",
+            color = "#fb0d28",
+            name = "Ruby",
+            cterm_color = "124",
+          },
+        },
+      }
+    end,
+  },
   {
     "christoomey/vim-tmux-navigator",
     lazy = false,
@@ -65,7 +83,6 @@ local plugins = {
     lazy = true,
     cmd = "UndotreeToggle",
   },
-  
   {
     "nvim-telescope/telescope.nvim",
     opts = {
@@ -82,7 +99,7 @@ local plugins = {
           },
           vertical = {
             mirror = true,
-          }
+          },
         },
       },
     },
