@@ -22,8 +22,9 @@ M.general = {
       opts = { noremap = true, silent = true },
     },
     ["<leader>js"] = { "<cmd>w !node<CR>", "Run Node.js" },
+    ["<leader>rb"] = { "<cmd>!rubocop -a<CR>", "Run rubocop", opts = { silent = true } },
     ["<leader>u"] = { "<cmd>UndotreeToggle<CR>", "Toggle Undotree" },
-    -- ["<leader>fx"] = { ":silent Bracey<CR>", "Start Live Server" },
+    ["<leader>fx"] = { ":silent Bracey<CR>", "Start Live Server" },
   },
   v = {
     [">"] = { ">gv", "indent" },
@@ -42,7 +43,7 @@ vim.keymap.set("n", "N", "Nzzzv", { silent = true })
 vim.keymap.set("n", "<leader><leader>", ":so", { desc = "Source" })
 vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
-vim.keymap.set("n", "<leader>fx", ":Bracey", { silent = true, desc = "Start Live Server" })
+--vim.keymap.set("n", "<leader>fx", ":Bracey", { silent = true, desc = "Start Live Server" })
 
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { silent = true, desc = "Move selected lines up" })
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { silent = true, desc = "Move selected lines down" })
