@@ -108,12 +108,12 @@ mcd() { mkdir -p "$1" && cd "$1"; } # mcd:          Makes new Dir and jumps insi
 
 #Search Directory
 sd() {
-	cd "$(fdfind --type d --hidden --exclude .git --exclude .nvm --exclude node_modules --exclude .vscode --exclude .wine --exclude snap --exclude Code --exclude .git --exclude thorium --exclude .nvm --exclude discord --exclude pgadmin4 --exclude .steam --exclude .npm --exclude node_modules | fzf)"
-	nvim 
+	cd "$(fdfind --type d --hidden --exclude .git --exclude .nvm --exclude node_modules --exclude .vscode --exclude .wine --exclude snap --exclude Code --exclude .git --exclude thorium --exclude .nvm --exclude discord --exclude pgadmin4 --exclude .steam --exclude .npm --exclude node_modules --ignore-file ~/.config/fd/.ignore | fzf)"
+	nvim
 }
 #Search File
 sf() {
-	fdfind --type f --hidden --exclude .git | fzf | xargs nvim
+	fdfind --type f --hidden --exclude .git --exclude .nvm --exclude node_modules --exclude .vscode --exclude .wine --exclude snap --exclude Code --exclude .git --exclude thorium --exclude .nvm --exclude discord --exclude pgadmin4 --exclude .steam --exclude .npm --exclude node_modules --exclude .themes| fzf | xargs nvim
 }
 
 # Alias definitions.
@@ -142,9 +142,12 @@ export PATH="$HOME/nvim.appimage:$PATH"
 export FZF_ALT_C_COMMAND="fdfind -t d --exclude .vscode --exclude .wine --exclude snap --exclude Code --exclude .git --exclude thorium --exclude .nvm --exclude discord --exclude pgadmin4 --exclude .steam --exclude .npm --exclude node_modules --hidden . $HOME"
 export FZF_DEFAULT_COMMAND="fdfind . $HOME"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-
+export XDG_DATA_DIRS="/var/lib/flatpak/exports/share:/home/lucas/.local/share/flatpak/exports/share:$XDG_DATA_DIRS"
+export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 eval "$(starship init bash)"
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
