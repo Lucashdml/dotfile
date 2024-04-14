@@ -5,41 +5,41 @@ local M = {}
 local highlights = require "custom.highlights"
 M.ui = {
   theme = "gruvbox",
-  theme_toggle = { "gatekeeper", "gruvbox" },
+  theme_toggle = { "gruvbox", "gatekeeper" },
 
   hl_override = highlights.override,
   hl_add = highlights.add,
   transparency = true,
   telescope = { style = "bordered" },
-  statusline = { separator_style = "block" },
+  statusline = { separator_style = "round" },
 
-  -- -- nvdash (dashboard)
-  -- nvdash = {
-  --   load_on_startup = true,
-  --
-  --   header = {
-  --     "           ▄ ▄                   ",
-  --     "       ▄   ▄▄▄     ▄ ▄▄▄ ▄ ▄     ",
-  --     "       █ ▄ █▄█ ▄▄▄ █ █▄█ █ █     ",
-  --     "    ▄▄ █▄█▄▄▄█ █▄█▄█▄▄█▄▄█ █     ",
-  --     "  ▄ █▄▄█ ▄ ▄▄ ▄█ ▄▄▄▄▄▄▄▄▄▄▄▄▄▄ ",
-  --     "  █▄▄▄▄ ▄▄▄ █ ▄ ▄▄▄ ▄ ▄▄▄ ▄ ▄ █ ▄",
-  --     "▄ █ █▄█ █▄█ █ █ █▄█ █ █▄█ ▄▄▄ █ █",
-  --     "█▄█ ▄ █▄▄█▄▄█ █ ▄▄█ █ ▄ █ █▄█▄█ █",
-  --     "    █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█ █▄█▄▄▄█    ",
-  --   },
-  --
-  --   buttons = {
-  --     { " Find File", "Spc f f", "Telescope find_files" },
-  --     { "󰈚 Recent Files", "Spc f o", "Telescope oldfiles" },
-  --     { "󰈭 Find Word", "Spc f w", "Telescope live_grep" },
-  --     { " Bookmarks", "Spc m a", "Telescope marks" },
-  --     { " Themes", "Spc t h", "Telescope themes" },
-  --     { " Mappings", "Spc c h", "NvCheatsheet" },
-  --   },
-  -- },
-  --
-  -- cheatsheet = { theme = "grid" }, -- simple/grid
+  -- nvdash (dashboard)
+  nvdash = {
+    load_on_startup = true,
+
+    header = {
+      "           ▄ ▄                   ",
+      "       ▄   ▄▄▄     ▄ ▄▄▄ ▄ ▄     ",
+      "       █ ▄ █▄█ ▄▄▄ █ █▄█ █ █     ",
+      "    ▄▄ █▄█▄▄▄█ █▄█▄█▄▄█▄▄█ █     ",
+      "  ▄ █▄▄█ ▄ ▄▄ ▄█ ▄▄▄▄▄▄▄▄▄▄▄▄▄▄ ",
+      "  █▄▄▄▄ ▄▄▄ █ ▄ ▄▄▄ ▄ ▄▄▄ ▄ ▄ █ ▄",
+      "▄ █ █▄█ █▄█ █ █ █▄█ █ █▄█ ▄▄▄ █ █",
+      "█▄█ ▄ █▄▄█▄▄█ █ ▄▄█ █ ▄ █ █▄█▄█ █",
+      "    █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█ █▄█▄▄▄█    ",
+    },
+
+    buttons = {
+      { " Find File", "Spc f f", "Telescope find_files" },
+      { "󰈚 Recent Files", "Spc f o", "Telescope oldfiles" },
+      { "󰈭 Find Word", "Spc f w", "Telescope live_grep" },
+      { " Bookmarks", "Spc m a", "Telescope marks" },
+      { " Themes", "Spc t h", "Telescope themes" },
+      { " Mappings", "Spc c h", "NvCheatsheet" },
+    },
+  },
+
+  cheatsheet = { theme = "grid" }, -- simple/grid
 }
 
 M.plugins = "custom.plugins"
