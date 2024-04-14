@@ -14,5 +14,11 @@ for _, lsp in ipairs(servers) do
   }
 end
 
--- 
+lspconfig.solargraph.setup {
+  cmd = { "solargraph", "stdio" },
+  filetypes = { "ruby" },
+  root_dir = lspconfig.util.root_pattern(".git", "Gemfile"),
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
 -- lspconfig.pyright.setup { blabla}
