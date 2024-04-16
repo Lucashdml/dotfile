@@ -1,7 +1,6 @@
-"$schema" = 'https://starship.rs/config-schema.json'
-
-format = """
-[](color_orange)\
+# Tuck "new line" inside the ($all) variable
+format = """($all
+)[](color_orange)\
 $os\
 $username\
 [](bg:color_yellow fg:color_orange)\
@@ -27,7 +26,12 @@ $time\
 [ ](fg:color_bg1)\
 $line_break$character"""
 
+
+"$schema" = 'https://starship.rs/config-schema.json'
+
 palette = 'gruvbox_dark'
+
+add_newline = false
 
 [palettes.gruvbox_dark]
 color_fg0 = '#fbf1c7'
@@ -149,11 +153,12 @@ style = "bg:color_bg3"
 format = '[[ $symbol( $environment) ](fg:#83a598 bg:color_bg3)]($style)'
 
 [time]
-disabled = true
+disabled = false
 time_format = "%R"
 style = "bg:color_bg1"
 format = '[[  $time ](fg:color_fg0 bg:color_bg1)]($style)'
 
+# No line-break between shell prompts
 [line_break]
 disabled = false
 
