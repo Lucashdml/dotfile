@@ -44,15 +44,6 @@ case "$TERM" in
 xterm-color | *-256color) color_prompt=yes ;;
 esac
 
-blk='\[\033[01;30m\]' # Black
-red='\[\033[01;31m\]' # Red
-grn='\[\033[01;32m\]' # Green
-ylw='\[\033[01;33m\]' # Yellow
-blu='\[\033[01;34m\]' # Blue
-pur='\[\033[01;35m\]' # Purple
-cyn='\[\033[01;36m\]' # Cyan
-wht='\[\033[01;37m\]' # White
-clr='\[\033[00m\]'    # Reset
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
@@ -69,21 +60,6 @@ if [ -n "$force_color_prompt" ]; then
 	fi
 fi
 
-if [ "$color_prompt" = yes ]; then
-	PS1='\[\033[01;32m\]→\[\033[00m\] \[\033[01;36m\]\w\[\033[00m\] \[\033[01;31m\]$(__git_ps1 "(%s)")\[\033[00m\] '
-
-else
-	PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
-unset color_prompt force_color_prompt
-
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm* | rxvt*)
-	PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-	;;
-*) ;;
-esac
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -97,29 +73,25 @@ if [ -x /usr/bin/dircolors ]; then
 	alias egrep='egrep --color=auto'
 fi
 
-# colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+#################
+### FUNCTIONS ###
+#################
 
 # common functions
 cd() { builtin cd "$@" && ls; }     # Always list directory contents upon 'cd'
 mcd() { mkdir -p "$1" && cd "$1"; } # mcd:          Makes new Dir and jumps inside
-
-#Custom functions
 
 #Search Directory
 sd() {
 	cd "$(fdfind --type d --hidden --exclude .git --exclude .nvm --exclude node_modules --exclude .vscode --exclude .wine --exclude snap --exclude Code --exclude .git --exclude thorium --exclude .nvm --exclude discord --exclude pgadmin4 --exclude .steam --exclude .npm --exclude node_modules --ignore-file ~/.config/fd/.ignore | fzf)"
 	nvim
 }
+
 #Search File
 sf() {
 	fdfind --type f --hidden --exclude .git --exclude .nvm --exclude node_modules --exclude .vscode --exclude .wine --exclude snap --exclude Code --exclude .git --exclude thorium --exclude .nvm --exclude discord --exclude pgadmin4 --exclude .steam --exclude .npm --exclude node_modules --exclude .themes| fzf | xargs nvim
 }
 
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
 if [ -f ~/.bash_aliases ]; then
 	. ~/.bash_aliases
@@ -136,18 +108,24 @@ if ! shopt -oq posix; then
 	fi
 fi
 
+###############
+### EXPORTS ###
+###############
+
+export EDITOR="nvim"
+export TERMINAL="kitty"
 export PATH="$HOME/.local/scripts:$PATH"
 export PATH="$HOME/nvim.appimage:$PATH"
-
+export PATH="$HOME/.rbenv/bin:$PATH"
 export FZF_ALT_C_COMMAND="fdfind -t d --exclude .vscode --exclude .wine --exclude snap --exclude Code --exclude .git --exclude thorium --exclude .nvm --exclude discord --exclude pgadmin4 --exclude .steam --exclude .npm --exclude node_modules --hidden . $HOME"
 export FZF_DEFAULT_COMMAND="fdfind . $HOME"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export XDG_DATA_DIRS="/var/lib/flatpak/exports/share:/home/lucas/.local/share/flatpak/exports/share:$XDG_DATA_DIRS"
 export NVM_DIR="$HOME/.nvm"
+
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 eval "$(starship init bash)"
-export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
