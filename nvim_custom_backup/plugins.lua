@@ -4,9 +4,7 @@ local overrides = require "custom.configs.overrides"
 local plugins = {
 
   -- Override plugin definition options
-  { "tpope/vim-rails",
-    lazy = false,
-  },
+  { "tpope/vim-rails", lazy = false },
   {
     "nvim-tree/nvim-web-devicons",
     config = function()
@@ -84,6 +82,67 @@ local plugins = {
     cmd = "UndotreeToggle",
   },
   {
+    "nvim-tree/nvim-tree.lua",
+    opts = {
+      view = {
+        adaptive_size = true,
+      },
+      diagnostics = {
+        enable = true,
+        show_on_dirs = false,
+        icons = {
+          hint = "",
+          info = "",
+          warning = "",
+          error = "",
+        },
+      },
+      renderer = {
+        indent_markers = {
+          enable = true,
+          icons = {
+            corner = "└ ",
+            edge = "│ ",
+            item = "│ ",
+            none = "  ",
+          },
+        },
+        icons = {
+          webdev_colors = false,
+          show = {
+            file = false,
+            folder = true,
+            folder_arrow = false,
+            git = true,
+          },
+          glyphs = {
+            default = "",
+            symlink = "",
+            folder = {
+              arrow_closed = "",
+              arrow_open = "",
+              default = "",
+              open = "",
+              empty = "",
+              empty_open = "",
+              symlink = "",
+              symlink_open = "",
+            },
+            git = {
+              unstaged = "", -- 
+              staged = "",
+              unmerged = "",
+              renamed = "➜",
+              untracked = "",
+              deleted = "",
+              ignored = "◌",
+            },
+          },
+        },
+      },
+    },
+  },
+  {
     "nvim-telescope/telescope.nvim",
     opts = {
       defaults = {
@@ -105,24 +164,24 @@ local plugins = {
     },
   },
   {
-        "kdheepak/lazygit.nvim",
-    	cmd = {
-    		"LazyGit",
-    		"LazyGitConfig",
-    		"LazyGitCurrentFile",
-    		"LazyGitFilter",
-    		"LazyGitFilterCurrentFile",
-    	},
-        -- optional for floating window border decoration
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-        },
-        -- setting the keybinding for LazyGit with 'keys' is recommended in
-        -- order to load the plugin when the command is run for the first time
-        keys = {
-           { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" }
-        }
+    "kdheepak/lazygit.nvim",
+    cmd = {
+      "LazyGit",
+      "LazyGitConfig",
+      "LazyGitCurrentFile",
+      "LazyGitFilter",
+      "LazyGitFilterCurrentFile",
     },
+    -- optional for floating window border decoration
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    -- setting the keybinding for LazyGit with 'keys' is recommended in
+    -- order to load the plugin when the command is run for the first time
+    keys = {
+      { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
+    },
+  },
   -- To make a plugin not be loaded
   -- {
   --   "NvChad/nvim-colorizer.lua",
