@@ -83,13 +83,13 @@ mcd() { mkdir -p "$1" && cd "$1"; } # mcd:          Makes new Dir and jumps insi
 
 #Search Directory
 sd() {
-	cd "$(fdfind --type d --hidden --exclude .git --exclude .nvm --exclude node_modules --exclude .vscode --exclude .wine --exclude snap --exclude Code --exclude .git --exclude thorium --exclude .nvm --exclude discord --exclude pgadmin4 --exclude .steam --exclude .npm --exclude node_modules --ignore-file ~/.config/fd/.ignore | fzf)"
+	cd "$(fdfind --type d --hidden --exclude .git --exclude .nvm --exclude node_modules --exclude .vscode --exclude .wine --exclude snap --exclude Code --exclude .git --exclude thorium --exclude .nvm --exclude discord --exclude pgadmin4 --exclude .steam --exclude .npm --exclude node_modules --ignore-file ~/.config/fd/.ignore | fzf )"
 	nvim
 }
 
 #Search File
 sf() {
-	fdfind --type f --hidden --exclude .git --exclude .nvm --exclude node_modules --exclude .vscode --exclude .wine --exclude snap --exclude Code --exclude .git --exclude thorium --exclude .nvm --exclude discord --exclude pgadmin4 --exclude .steam --exclude .npm --exclude node_modules --exclude .themes| fzf | xargs nvim
+	fdfind --type f --hidden --exclude .git --exclude .nvm --exclude node_modules --exclude .vscode --exclude .wine --exclude snap --exclude Code --exclude .git --exclude thorium --exclude .nvm --exclude discord --exclude pgadmin4 --exclude .steam --exclude .npm --exclude node_modules --exclude .themes| fzf --preview 'bat --color=always --style=header,grid --line-range :500 {}' | xargs nvim
 }
 
 
@@ -111,7 +111,24 @@ fi
 ###############
 ### EXPORTS ###
 ###############
+color00='-1'
+color01='#3c3836'
+color02='#504945'
+color03='#665c54'
+color04='#bdae93'
+color05='#d5c4a1'
+color06='#ebdbb2'
+color07='#fbf1c7'
+color08='#fb4934'
+color09='#fe8019'
+color0A='#fabd2f'
+color0B='#b8bb26'
+color0C='#8ec07c'
+color0D='#83a598'
+color0E='#d3869b'
+color0F='#d65d0e'
 
+export BAT_THEME="gruvbox-dark"
 export EDITOR="nvim"
 export TERMINAL="kitty"
 export PATH="$HOME/.local/scripts:$PATH"
@@ -120,6 +137,11 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 export FZF_ALT_C_COMMAND="fdfind -t d --exclude .vscode --exclude .wine --exclude snap --exclude Code --exclude .git --exclude thorium --exclude .nvm --exclude discord --exclude pgadmin4 --exclude .steam --exclude .npm --exclude node_modules --hidden . $HOME"
 export FZF_DEFAULT_COMMAND="fdfind . $HOME"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_DEFAULT_OPTS='--border rounded --preview-window rounded'\
+" --color=bg+:-1,bg:-1,spinner:$color0C,hl:$color0D"\
+" --color=fg:$color04,header:$color0D,info:$color0A,pointer:$color08"\
+" --color=marker:$color0C,fg+:$color0B,prompt:$color0A,hl+:$color0D"
+
 export XDG_DATA_DIRS="/var/lib/flatpak/exports/share:/home/lucas/.local/share/flatpak/exports/share:$XDG_DATA_DIRS"
 export NVM_DIR="$HOME/.nvm"
 
