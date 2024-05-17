@@ -10,5 +10,6 @@ alias nvim='$HOME/nvim.appimage'
 alias t='tmux attach'
 alias tkill='tmux kill-server'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-alias nvc='cd && cd ~/.config/nvim/ && nvim .'
+alias nvc='cd && cd ~/.config/nvim/ && nvim'
 alias sourceb='source ~/.bashrc'
+alias install="dpkg -i"
