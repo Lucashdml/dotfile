@@ -5,6 +5,7 @@ local plugins = {
 
   -- Override plugin definition options
   { "tpope/vim-rails", lazy = false },
+
   {
     "nvim-tree/nvim-web-devicons",
     config = function()
@@ -20,6 +21,33 @@ local plugins = {
       }
     end,
   },
+
+  {
+    "goolord/alpha-nvim",
+    lazy = false,
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+      "nvim-lua/plenary.nvim",
+    },
+    config = function()
+      local alpha = require "alpha"
+      local config = require("alpha.themes.startify").config
+      -- there's no name, access via index
+      config.layout[2].val = {
+        [[                                                                     ]],
+        [[       ████ ██████           █████      ██                     ]],
+        [[      ███████████             █████                             ]],
+        [[      █████████ ███████████████████ ███   ███████████   ]],
+        [[     █████████  ███    █████████████ █████ ██████████████   ]],
+        [[    █████████ ██████████ █████████ █████ █████ ████ █████   ]],
+        [[  ███████████ ███    ███ █████████ █████ █████ ████ █████  ]],
+        [[ ██████  █████████████████████ ████ █████ █████ ████ ██████ ]],
+      }
+
+      alpha.setup(config)
+    end,
+  },
+
   {
     "christoomey/vim-tmux-navigator",
     lazy = false,
@@ -41,7 +69,15 @@ local plugins = {
 
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = overrides.treesitter,
+    lazy = false,
+    dependencies = { "HiPhish/nvim-ts-rainbow2" },
+    opts = function(_, opts)
+      opts.rainbow = {
+        enable = true,
+        query = "rainbow-parens",
+        strategy = require("ts-rainbow").strategy.global,
+      }
+    end,
   },
 
   {
@@ -71,16 +107,19 @@ local plugins = {
     "ThePrimeagen/vim-be-good",
     cmd = "VimBeGood",
   },
+
   {
     "turbio/bracey.vim",
     cmd = { "Bracey", "BraceyStop", "BraceyReload", "BraceyEval" },
     lazy = false,
   },
+
   {
     "mbbill/undotree",
     lazy = true,
     cmd = "UndotreeToggle",
   },
+
   {
     "nvim-tree/nvim-tree.lua",
     opts = {
@@ -142,6 +181,7 @@ local plugins = {
       },
     },
   },
+
   {
     "nvim-telescope/telescope.nvim",
     opts = {
@@ -163,6 +203,7 @@ local plugins = {
       },
     },
   },
+
   {
     "kdheepak/lazygit.nvim",
     cmd = {
@@ -182,6 +223,7 @@ local plugins = {
       { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
     },
   },
+
   -- To make a plugin not be loaded
   -- {
   --   "NvChad/nvim-colorizer.lua",
