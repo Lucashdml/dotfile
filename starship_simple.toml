@@ -1,4 +1,4 @@
-format = """
+ format = """
 [╭─](white) $os$username in $directory$package$java$python$lua$ruby$nodejs$git_branch$git_status
 [╰─](white)$character """
 
@@ -44,9 +44,6 @@ symbol = " "
 [dart]
 symbol = " "
 
-# [directory]
-# read_only = " 󰌾"
-
 [docker_context]
 symbol = " "
 
@@ -64,12 +61,29 @@ symbol = " "
 
 [git_branch]
 symbol = " "
+format = '[$symbol$branch]($style) '
+style = 'bold color_green'
+
+[git_status]
+format = '[$all_status$ahead_behind ]($style)'
+ahead = '[⬆](bold purple) '
+behind = '[⬇](bold purple) '
+staged = '[✚](green) '
+deleted = '[✖](red) '
+renamed = '[➜](purple) '
+stashed = '[✭](cyan) '
+untracked = '[◼](white) '
+modified = '[✱](blue) '
+conflicted = '[═](yellow) '
+diverged = '⇕ '
+up_to_date = ''
 
 [directory]
 read_only = "🔒"
 style = "bold cyan"
+home_symbol = ' ~'
 read_only_style = "red"
-truncation_length = 8
+truncation_length = 4
 truncation_symbol = "…/"
 format = "[$read_only]($read_only_style)[$path]($style) "
 disabled = false
@@ -103,6 +117,8 @@ symbol = " "
 
 [lua]
 symbol = " "
+style = "blue"
+format = '[$symbol($version) ]($style)'
 
 [memory_usage]
 symbol = "󰍛 "
@@ -118,6 +134,7 @@ symbol = " "
 
 [nodejs]
 symbol = " "
+format = '[$symbol($version) ]($style)'
 
 [ocaml]
 symbol = " "
@@ -193,7 +210,7 @@ symbol = "󰟔 "
 
 [ruby]
 symbol = " "
-format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
+format = '[$symbol($version) ]($style)'
 
 [rust]
 symbol = " "
